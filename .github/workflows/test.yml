@@ -1,20 +1,18 @@
 name: Acciojob Tests
 
 on:
- push:
-    branches: [ "main","master" ]
+  push:
+    branches: [ "main", "master" ]
 
 jobs:
-  calling-acciojob-main-action:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - run: npm install
-    
-  test:
-    needs: calling-acciojob-main-action
-    uses: acciojob/acciojob-tests-action/.github/workflows/main-action.yml@main
-    secrets: inherit
+
+      - uses: acciojob/acciojob-tests-action/.github/workflows/main-action.yml@main
+        secrets: inherit
